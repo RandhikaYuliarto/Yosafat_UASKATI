@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice</title>
+    <link rel="stylesheet" href="style.css"> </head>
+<body>
+    <div class="invoice-container">
+        <h1>Invoice</h1>
+
+        <div class="customer-info">
+            <h2>Customer Information</h2>
+            <p><strong>Nama:Yosafat Valen Febrian</strong> <span id="customer-name"></span></p>
+            <p><strong>Email:yosafatgeming@gmail.com</strong> <span id="customer-email"></span></p>
+            <p><strong>Telepon:+62 838 4318 4053</strong> <span id="customer-phone"></span></p>
+        </div>
+
+        <div class="product-info">
+            <h2>Product Information</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Maison Beer</th>
+                    </tr>
+                </thead>
+                <tbody id="product-table">
+                    </tbody>
+            </table>
+        </div>
+
+        <div class="total">
+            <h2>Total</h2>
+            <p id="product-price">Rp 100,000</p>
+        </div>
+    </div>
+
+               
+
+    <script>
+        // Ambil data dari transaksi.html (Anda perlu mengimplementasikan cara pengambilan data ini)
+const customerName = localStorage.getItem("customerName");
+const customerEmail = localStorage.getItem("customerEmail");
+const customerPhone = localStorage.getItem("customerPhone");
+const productData = JSON.parse(localStorage.getItem("productData")) || []; 
+
+// Tampilkan data pelanggan
+document.getElementById("customer-name").textContent = customerName;
+document.getElementById("customer-email").textContent = customerEmail;
+document.getElementById("customer-phone").textContent = customerPhone;
+
+// Tampilkan data produk
+const productTable = document.getElementById("product-table");
+let totalPrice = 0;
+productData.forEach(product => {
+    const row = productTable.insertRow();
+    const nameCell = row.insertCell();
+    const priceCell = row.insertCell();
+    nameCell.textContent = product.name;
+    priceCell.textContent = `Rp ${product.price}`;
+    totalPrice += product.price;
+});
+
+// Tampilkan total harga
+document.getElementById("total-price").textContent = `Rp ${totalPrice}`;
+
+    </script> </body>
+</html>

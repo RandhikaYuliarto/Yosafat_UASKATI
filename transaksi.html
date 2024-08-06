@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Halaman Transaksi</title>
+    <style>
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        input[type=text], input[type=email] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+
+    <h2>Formulir Transaksi</h2>
+
+    <form action="invoice.html" method="get">
+        <label for="nama">Nama:</label><br>
+        <input type="text" id="nama" name="nama"><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="telepon">Telepon:</label><br>
+        <input type="text" id="telepon" name="telepon"><br><br>
+        <button type="submit">Kirim</button> 
+    </form>
+
+    <h2>Daftar Barang yang Dibeli</h2>
+
+    <table>
+        <tr>
+            <th>Nama Barang</th>
+            <th>Harga</th>
+        </tr>
+        <tr>
+            <td id="product-name"></td>
+            <td id="product-price"></td>
+        </tr>
+        </table>
+         
+     
+<script>
+function getQueryParameters(url) {
+  const urlParams = new URLSearchParams(url);
+  const params = {};
+
+  for (const [key,value] of urlParams.entries()){
+      params[key] = value;
+  }
+  return params;
+}
+
+const data = getQueryParameters(window.location.href);
+
+
+document.getElementById('product-name').innerText = data.name;
+document.getElementById('product-price').innerText = data.price;
+
+
+</script>
+</body>
+
+</html>
